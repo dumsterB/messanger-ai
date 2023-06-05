@@ -1,0 +1,53 @@
+.messenger-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.messenger-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.messenger-content {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: #f1f1f1;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.messenger-header {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.messenger-title {
+    font-size: 16px;
+}
+
+.messenger-close {
+    float: right;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.messenger-close:hover {
+    color: #f1f1f1;
+}
+
+.messenger-body {
+    padding: 10px;
+}
