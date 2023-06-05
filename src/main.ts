@@ -1,4 +1,4 @@
-import Messenger, { MessangerConfig } from './component/index';
+import Messenger, { MessangerConfig } from './page';
 
 const config: MessangerConfig = {
   holder: 'messenger',

@@ -5,14 +5,17 @@
 }
 
 .messenger-button {
-    background-color: #4CAF50;
+    background-color: #5c5cd6;
     color: white;
-    padding: 10px 20px;
+    height: 70px;
+    width: 70px;
     border: none;
     cursor: pointer;
-    font-size: 16px;
-    border-radius: 4px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .messenger-content {
     display: none;

@@ -1,4 +1,4 @@
-import Messenger from "./component/index.ts";
+import Messenger from "./page";
 import './main.css'
 
 export default {
