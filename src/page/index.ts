@@ -3,6 +3,12 @@ import { messengerContent } from '../component/messanger/index';
 import './index.css';
 import button_img from '../assets/chat.svg';
 
+(window as any).closeMessenger = () => {
+  const messengerContentElem = document.getElementById('messenger-content');
+  messengerContentElem.style.display = 'none';
+};
+
+
 export default class Messenger {
   constructor(config: MessangerConfig) {
     this.initializeMessenger(config);
@@ -20,7 +26,7 @@ export default class Messenger {
 
     const messengerButton = document.createElement('button');
     messengerButton.classList.add('messenger-button');
-    messengerButton.innerHTML = `<img class="chat-img" height="40" src="${button_img}"></img>`;
+    messengerButton.innerHTML = `<img class="chat-img"  src="${button_img}"></img>`;
 
     messengerButton.addEventListener('click', () => {
       const messengerContentElem = document.getElementById('messenger-content');
@@ -31,14 +37,8 @@ export default class Messenger {
       }
     });
 
-    const closeButton = document.querySelector('.messenger-close');
-    closeButton?.addEventListener('click', () => {
-      const messengerContentElem = document.getElementById('messenger-content');
-      messengerContentElem.style.display = 'none';
-    });
-
     messengerContainer.appendChild(messengerButton);
-    messengerContainer.appendChild(messengerContent('fewfewfw'));
+    messengerContainer.appendChild(messengerContent({name:config.name}));
 
     element.appendChild(messengerContainer);
   }

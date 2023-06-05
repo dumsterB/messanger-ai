@@ -1,0 +1,26 @@
+.messenger-content {
+    display: block;
+    position: fixed;
+    transition: background 650ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    bottom: 100px;
+    height: 500px;
+    right: 50px;
+    background-color: rgb(107 114 128 );
+    z-index: 1;
+    border-radius: 15px 15px 15px 15px;
+    width: 400px;
+    border: 1px solid white;
+}
+
+.messenger-header {
+    padding: 10px;
+    background: url("https://code-jvs1.jivosite.com/images/pattern/2.svg");
+    height: 120px;
+    border-radius: 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #4CAF50;
+    color: white;
+}
+

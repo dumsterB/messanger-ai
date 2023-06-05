@@ -4,6 +4,7 @@ const config: MessangerConfig = {
   holder: 'messenger',
   tools: {}, // Здесь можно указать нужные инструменты
   placeholder: 'Let`s write information about the lesson!',
+  name:'Dumster Ai',
   title: "Open Ai"
 };
 

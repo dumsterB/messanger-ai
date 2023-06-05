@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .messenger-container {
     position: fixed;
     bottom: 20px;
@@ -16,35 +20,23 @@
     align-items: center;
 }
 
-
-.messenger-content {
-    display: none;
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    background-color: #f1f1f1;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.chat-img{
+    height: 45px;
+    margin: auto;
 }
 
-.messenger-header {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-}
 
-.messenger-title {
-    font-size: 16px;
-}
 
 .messenger-close {
-    float: right;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,.25);
     color: white;
-    background-color: transparent;
     border: none;
+    height: 40px;
+    width: 40px;
     cursor: pointer;
-    font-size: 20px;
+    padding-bottom: 2px;
+    font-size: 25px;
 }
 
 .messenger-close:hover {
@@ -52,5 +44,7 @@
 }
 
 .messenger-body {
-    padding: 10px;
+    height: 380px;
+    background: white;
+    border: 15px;
 }
