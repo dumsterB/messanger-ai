@@ -1,9 +1,12 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 .messenger-content {
     position: fixed;
     bottom: 100px;
     right: 50px;
     width: 400px;
-    height: 500px;
+    height: 600px;
     background-color: #6b7280;
     border-radius: 15px;
     box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
@@ -58,15 +61,19 @@
 }
 
 .user-message {
-    background-color: #f3f4f6;
+    background-color: #5c5cd6;
+    color: white;
+    border-radius: 12px;
 }
 
 .chatgpt-response {
-    background-color: #d1d5db;
+    background-color: #f2f2f2;
+    border-radius: 12px;
 }
 .messenger-body {
-    height: 400px;
+    height: 550px;
     position: relative;
+    box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
     background: white;
     border: 15px;
 }

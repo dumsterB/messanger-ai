@@ -16,7 +16,7 @@ export function messengerContent(params) {
         <button class="messenger-close text-white" onclick="closeMessenger()">&times;</button>
       </div>
     </div>
-    <div class="messenger-body p-4">
+    <div class="messenger-body p-2">
       <div id="message-content" class="message-content"></div>
       <div id="input-container" class="input-container flex">
                <input  id="message-input" class="mt-4 p-2 border border-gray-300 rounded message-input" placeholder="Type your message here">
@@ -76,7 +76,7 @@ export function messengerContent(params) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer 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`
+                'Authorization': `Bearer ${import.meta.env.VITE_TOKEN}`
             },
             body: JSON.stringify({
                 messages: [{ role: 'system', content: 'You are a helpful assistant.' }, { role: 'user', content: message }],
