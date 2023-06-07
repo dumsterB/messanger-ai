@@ -5,6 +5,7 @@ import { MessangerConfig } from '../../types/index.ts';
 import SocialMedias from "../socials/index";
 
 export function messengerContent(params: MessangerConfig): HTMLElement {
+      console.log(params)
     const messengerContent: HTMLElement = document.createElement('div');
     messengerContent.id = 'messenger-content';
     messengerContent.classList.add('messenger-content');
@@ -20,12 +21,12 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
       </div>
     </div>
     <div class="messenger-body p-2">
-     <div class="messanger-content-socials">
+      <div class="messanger-content">
       ${SocialMedias(params.tools?.socials)}
+      <div id="message-content" class="message-content mt-2"></div>
      </div>
-      <div id="message-content" class="message-content"></div>
       <div id="input-container" class="input-container flex">
-        <input  id="message-input" class="mt-4 p-2 border border-gray-300 rounded message-input" placeholder="Type your message here">
+        <input  id="message-input" class="mt-4 border border-gray-300 rounded message-input rounded-lg" placeholder="Type your message here">
         <button  id="send-button" class="mt-4 px-4 py-2 ml-2 bg-blue-500 text-white rounded">Send</button>
       </div>
     </div>
@@ -81,8 +82,10 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
     function displayUserMessage(message: string) {
         const userMessage: HTMLDivElement = document.createElement('div');
+        const text:HTMLParagraphElement = document.createElement('p')
         userMessage.classList.add('message', 'user-message');
-        userMessage.textContent = message;
+        text.textContent = message;
+        userMessage.appendChild(text)
         messageContent?.appendChild(userMessage);
         scrollToBottom();
     }
@@ -102,6 +105,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     }
 
     async function sendMessageToChatGPT(message: string) {
+        console.log(params)
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {

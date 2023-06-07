@@ -3,8 +3,8 @@
 }
 .messenger-content {
   position: fixed;
-  bottom: 100px;
-  right: 50px;
+  bottom: 30px;
+  right: 30px;
   width: 400px;
   height: 600px;
   background-color: #6b7280;
@@ -29,9 +29,10 @@
   bottom: 10px;
   width: 300px;
   resize: none;
+  margin-left: 10px;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 25px;
   outline: none;
 }
 
@@ -47,30 +48,47 @@
 }
 
 .message-content {
-  height: 100%;
-  overflow-y: auto;
+  height: 60%;
+  overflow-y: scroll;
   padding: 5px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .message {
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
+  overflow: hidden; /* Добавлено */
 }
-
 .user-message {
   background-color: #5c5cd6;
   color: white;
+  text-align: right;
+  align-self: flex-end;
   border-radius: 12px;
+  padding: 8px;
+  float: right;
+  width: fit-content;
+  margin-bottom: 10px;
+  word-wrap: break-word;
 }
 
 .chatgpt-response {
   background-color: #f2f2f2;
   border-radius: 12px;
+  padding: 8px;
+  float: left;
+  width: fit-content;
+  margin-bottom: 10px;
+  justify-content: end;
+  margin-right: 40px;
+  word-wrap: break-word;
 }
+
+
+
 .messenger-body {
-  height: 550px;
+  height: 520px;
   position: relative;
   box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
   background: white;
@@ -79,6 +97,7 @@
 .input-container {
   position: absolute;
   bottom: 10px;
+  width: 100%;
   background: white;
 }
 .messenger-close {
