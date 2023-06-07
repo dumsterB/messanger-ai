@@ -1,0 +1,46 @@
+.social-icon {
+    border-radius: 50%;
+    color: white;
+    border: none;
+    background: #5c5cd6;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    padding-bottom: 2px;
+    font-size: 25px;
+}
+.social-icon-side{
+    border-radius: 50%;
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    padding-bottom: 2px;
+    font-size: 25px;
+}
+.social-icon:hover {
+    color: #f1f1f1;
+}
+.social-item{
+    display: block;
+    width: 80px;
+    margin-bottom: 15px;
+}
+.social-name{
+    font-size: 12px;
+    text-align: center;
+}
+.socials{
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+}

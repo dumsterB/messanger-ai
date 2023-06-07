@@ -16,12 +16,11 @@
 .messenger-header {
     padding: 10px;
     background: url("https://code-jvs1.jivosite.com/images/pattern/2.svg");
-    height: 120px;
+    height: 80px;
     background-color: #4caf50;
     border-radius: 15px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    display: flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -75,10 +74,25 @@
     position: relative;
     box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
     background: white;
-    border: 15px;
+    border-radius: 15px;
 }
 .input-container{
     position: absolute;
     bottom: 10px;
     background: white;
+}
+.messenger-close {
+    border-radius: 50%;
+    background-color: rgba(255,255,255,.25);
+    color: white;
+    border: none;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    padding-bottom: 2px;
+    font-size: 25px;
+}
+
+.messenger-close:hover {
+    color: #f1f1f1;
 }

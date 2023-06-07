@@ -1,6 +1,8 @@
 import './index.css';
 import avatar from '../../assets/avatar.jpg';
+import Socials from '../socials/index'
 import { MessangerConfig } from '../../types/index.ts';
+import SocialMedias from "../socials/index";
 
 export function messengerContent(params: MessangerConfig): HTMLElement {
     const messengerContent: HTMLElement = document.createElement('div');
@@ -8,7 +10,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     messengerContent.classList.add('messenger-content');
 
     messengerContent.innerHTML = `
-    <div class="messenger-header bg-gray-500 flex justify-between">
+    <div class="messenger-header bg-gray-500">
       <div class="w-full h-12 flex justify-between">
         <div class="flex items-center">
           <img class="w-12 h-12 rounded-full" src="${avatar}" alt="Rounded avatar">
@@ -18,6 +20,9 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
       </div>
     </div>
     <div class="messenger-body p-2">
+     <div class="messanger-content-socials">
+      ${SocialMedias(params.tools?.socials)}
+     </div>
       <div id="message-content" class="message-content"></div>
       <div id="input-container" class="input-container flex">
         <input  id="message-input" class="mt-4 p-2 border border-gray-300 rounded message-input" placeholder="Type your message here">
