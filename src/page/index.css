@@ -3,24 +3,24 @@
 @tailwind utilities;
 
 .messenger-container {
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
 }
 
 .messenger-button {
-    background-color: #5c5cd6;
-    color: white;
-    height: 70px;
-    width: 70px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
+  background-color: #5c5cd6;
+  color: white;
+  height: 70px;
+  width: 70px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
 }
 
-.chat-img{
-    height: 45px;
-    margin: auto;
+.chat-img {
+  height: 45px;
+  margin: auto;
 }

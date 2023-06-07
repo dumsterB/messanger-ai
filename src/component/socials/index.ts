@@ -1,20 +1,29 @@
-import { Socials } from '../../types/index';
-import { instagram, telegram, message, support,left,right,twitter,facebook } from '../../utils/icons';
-import './index.css';
+import { Socials } from "../../types/index";
+import {
+  instagram,
+  telegram,
+  message,
+  support,
+  left,
+  right,
+  twitter,
+  facebook,
+} from "../../utils/icons";
+import "./index.css";
 
 export default function SocialMedias(params: Socials): string {
-    const content = `
+  const content = `
     <div>
       <div class="max-w-2xl">
         <div class="grid grid-cols-5 gap-2 socials flex mt-5 border-b-2 pb-5">
-             <div class="social-item">
+             <div class="social-item"> 
             <div class="social-icon"> 
               ${message}
             </div>
             <p class="social-name">Написать AI</p>
           </div>
           <div class="social-item">
-            <div class="social-icon"> 
+            <div class="social-icon">
               ${support}
             </div>
             <p class="social-name">Support</p>
@@ -55,20 +64,20 @@ export default function SocialMedias(params: Socials): string {
     </div>
   `;
 
-    const scrollRight = () => {
-        const scrollContainer = document.querySelector('.socials');
-        scrollContainer.scrollBy({
-            top: 0,
-            left: 100, // Adjust the scroll amount as needed
-            behavior: 'smooth' // Use 'auto' for instant scroll without animation
-        });
-    };
-
-    // Attach event listener to the button after the content is rendered
-    setTimeout(() => {
-        const scrollRightBtn = document.getElementById('scroll-right-btn');
-        scrollRightBtn.addEventListener('click', scrollRight);
+  const scrollRight = () => {
+    const scrollContainer = document.querySelector(".socials");
+    scrollContainer.scrollBy({
+      top: 0,
+      left: 100, // Adjust the scroll amount as needed
+      behavior: "smooth", // Use 'auto' for instant scroll without animation
     });
+  };
 
-    return content;
+  // Attach event listener to the button after the content is rendered
+  setTimeout(() => {
+    const scrollRightBtn = document.getElementById("scroll-right-btn");
+    scrollRightBtn.addEventListener("click", scrollRight);
+  });
+
+  return content;
 }

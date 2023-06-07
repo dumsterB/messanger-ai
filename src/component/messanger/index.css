@@ -1,98 +1,98 @@
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .messenger-content {
-    position: fixed;
-    bottom: 100px;
-    right: 50px;
-    width: 400px;
-    height: 600px;
-    background-color: #6b7280;
-    border-radius: 15px;
-    box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
-    z-index: 1;
+  position: fixed;
+  bottom: 100px;
+  right: 50px;
+  width: 400px;
+  height: 600px;
+  background-color: #6b7280;
+  border-radius: 15px;
+  box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
+  z-index: 1;
 }
 
 .messenger-header {
-    padding: 10px;
-    background: url("https://code-jvs1.jivosite.com/images/pattern/2.svg");
-    height: 80px;
-    background-color: #4caf50;
-    border-radius: 15px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    justify-content: space-between;
-    align-items: center;
+  padding: 10px;
+  background: url("https://code-jvs1.jivosite.com/images/pattern/2.svg");
+  height: 80px;
+  background-color: #4caf50;
+  border-radius: 15px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .message-input {
-    bottom: 10px;
-    width: 300px;
-    resize: none;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
+  bottom: 10px;
+  width: 300px;
+  resize: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
 }
 
 .send-button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #1e40af;
-    color: white;
-    border: none;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .message-content {
-    height: 100%;
-    overflow-y: auto;
-    padding: 5px;
-    padding-bottom: 50px;
+  height: 100%;
+  overflow-y: auto;
+  padding: 5px;
+  padding-bottom: 50px;
 }
 
 .message {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .user-message {
-    background-color: #5c5cd6;
-    color: white;
-    border-radius: 12px;
+  background-color: #5c5cd6;
+  color: white;
+  border-radius: 12px;
 }
 
 .chatgpt-response {
-    background-color: #f2f2f2;
-    border-radius: 12px;
+  background-color: #f2f2f2;
+  border-radius: 12px;
 }
 .messenger-body {
-    height: 550px;
-    position: relative;
-    box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
-    background: white;
-    border-radius: 15px;
+  height: 550px;
+  position: relative;
+  box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
+  background: white;
+  border-radius: 15px;
 }
-.input-container{
-    position: absolute;
-    bottom: 10px;
-    background: white;
+.input-container {
+  position: absolute;
+  bottom: 10px;
+  background: white;
 }
 .messenger-close {
-    border-radius: 50%;
-    background-color: rgba(255,255,255,.25);
-    color: white;
-    border: none;
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
-    padding-bottom: 2px;
-    font-size: 25px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.25);
+  color: white;
+  border: none;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  padding-bottom: 2px;
+  font-size: 25px;
 }
 
 .messenger-close:hover {
-    color: #f1f1f1;
+  color: #f1f1f1;
 }

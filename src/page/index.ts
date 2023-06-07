@@ -1,15 +1,14 @@
-import { MessangerConfig } from '../types';
-import { messengerContent } from '../component/messanger/index';
-import './index.css';
-import button_img from '../assets/chat.svg';
+import { MessangerConfig } from "../types";
+import { messengerContent } from "../component/messanger/index";
+import "./index.css";
+import button_img from "../assets/chat.svg";
 
 (window as any).closeMessenger = () => {
-  const messengerContentElem = document.getElementById('messenger-content');
-  if(messengerContentElem){
-    messengerContentElem.style.display = 'none';
+  const messengerContentElem = document.getElementById("messenger-content");
+  if (messengerContentElem) {
+    messengerContentElem.style.display = "none";
   }
 };
-
 
 export default class Messenger {
   constructor(config: MessangerConfig) {
@@ -17,30 +16,38 @@ export default class Messenger {
   }
 
   initializeMessenger(config: MessangerConfig) {
-    const element = document.getElementById(config.holder || 'app');
+    const element = document.getElementById(config.holder || "app");
     if (!element) {
-      console.error(`Element with ID ${config.holder || 'id of element'} not found.`);
+      console.error(
+        `Element with ID ${config.holder || "id of element"} not found.`
+      );
       return;
     }
 
-    const messengerContainer = document.createElement('div');
-    messengerContainer.classList.add('messenger-container');
+    const messengerContainer = document.createElement("div");
+    messengerContainer.classList.add("messenger-container");
 
-    const messengerButton = document.createElement('button');
-    messengerButton.classList.add('messenger-button');
+    const messengerButton = document.createElement("button");
+    messengerButton.classList.add("messenger-button");
     messengerButton.innerHTML = `<img class="chat-img"  src="${button_img}"></img>`;
 
-    messengerButton.addEventListener('click', () => {
-      const messengerContentElem = document.getElementById('messenger-content');
-      if (messengerContentElem && messengerContentElem.style.display === 'block') {
-        messengerContentElem.style.display = 'none';
-      }else if(messengerContentElem && messengerContentElem.style.display === 'none') {
-        messengerContentElem.style.display = 'block';
+    messengerButton.addEventListener("click", () => {
+      const messengerContentElem = document.getElementById("messenger-content");
+      if (
+        messengerContentElem &&
+        messengerContentElem.style.display === "block"
+      ) {
+        messengerContentElem.style.display = "none";
+      } else if (
+        messengerContentElem &&
+        messengerContentElem.style.display === "none"
+      ) {
+        messengerContentElem.style.display = "block";
       }
     });
 
     messengerContainer.appendChild(messengerButton);
-    messengerContainer.appendChild(messengerContent({name:config.name}));
+    messengerContainer.appendChild(messengerContent({ name: config.name }));
 
     element.appendChild(messengerContainer);
   }
