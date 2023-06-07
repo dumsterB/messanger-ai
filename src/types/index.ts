@@ -1,10 +1,11 @@
 export interface MessangerConfig{
-    api_key: string,
-    holder: string;
-    tools: any;
-    socials: Socials[],
-    placeholder: string;
-    title: string;
+    holder?: string;
+    tools?: any;
+    socials?: Socials[],
+    placeholder?: string;
+    title?: string;
+    token?: string;
+    name?: string;
 }
 
 export interface Socials{

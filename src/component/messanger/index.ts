@@ -1,8 +1,9 @@
 import './index.css';
 import avatar from '../../assets/avatar.jpg';
+import { MessangerConfig } from '../../types/index.ts';
 
-export function messengerContent(params) {
-    const messengerContent = document.createElement('div');
+export function messengerContent(params: MessangerConfig): HTMLElement {
+    const messengerContent: HTMLElement = document.createElement('div');
     messengerContent.id = 'messenger-content';
     messengerContent.classList.add('messenger-content');
 
@@ -19,64 +20,88 @@ export function messengerContent(params) {
     <div class="messenger-body p-2">
       <div id="message-content" class="message-content"></div>
       <div id="input-container" class="input-container flex">
-               <input  id="message-input" class="mt-4 p-2 border border-gray-300 rounded message-input" placeholder="Type your message here">
-
-         <button  id="send-button" class="mt-4 px-4 py-2 ml-2 bg-blue-500 text-white rounded">Send</button>
+        <input  id="message-input" class="mt-4 p-2 border border-gray-300 rounded message-input" placeholder="Type your message here">
+        <button  id="send-button" class="mt-4 px-4 py-2 ml-2 bg-blue-500 text-white rounded">Send</button>
       </div>
     </div>
   `;
 
-    const sendButton = messengerContent.querySelector('#send-button');
-    const messageInput = messengerContent.querySelector('#message-input');
-    const messageContent = messengerContent.querySelector('#message-content');
+    const sendButton: HTMLButtonElement | null = messengerContent.querySelector('#send-button');
+    const messageInput: HTMLInputElement | null = messengerContent.querySelector('#message-input');
+    const messageContent: HTMLElement | null = messengerContent.querySelector('#message-content');
 
-    messageInput.addEventListener('keydown', (event) => {
-        if (event.keyCode === 13) {
-            event.preventDefault(); // Prevent the default behavior of the Enter key
-            const message = messageInput.value.trim();
+    messageInput?.addEventListener('keydown', (event: KeyboardEvent) => {
+        if (event?.keyCode === 13) {
+            event?.preventDefault(); // Prevent the default behavior of the Enter key
+            const message: string = messageInput.value?.trim() || '';
             if (message !== '') {
                 displayUserMessage(message);
-                messageInput.value = '';
+                if (messageInput.value) {
+                    messageInput.value = '';
+                }
                 sendMessageToChatGPT(message);
             }
         }
     });
 
-    sendButton.addEventListener('click', () => {
-        const message = messageInput.value.trim();
+    // ...
+
+    messageInput?.addEventListener('keydown', (event: KeyboardEvent) => {
+        if (event?.keyCode === 13) {
+            event?.preventDefault(); // Prevent the default behavior of the Enter key
+            const message: string = messageInput?.value?.trim() || '';
+            if (message !== '') {
+                displayUserMessage(message);
+                if (messageInput?.value) {
+                    messageInput.value = '';
+                }
+                sendMessageToChatGPT(message);
+            }
+        }
+    });
+
+    sendButton?.addEventListener('click', () => {
+        const message: string = messageInput?.value?.trim() || '';
         if (message !== '') {
             displayUserMessage(message);
-            messageInput.value = '';
+            if (messageInput?.value) {
+                messageInput.value = '';
+            }
             sendMessageToChatGPT(message);
         }
     });
 
-    function displayUserMessage(message) {
-        const userMessage = document.createElement('div');
+// ...
+
+
+    function displayUserMessage(message: string) {
+        const userMessage: HTMLDivElement = document.createElement('div');
         userMessage.classList.add('message', 'user-message');
         userMessage.textContent = message;
-        messageContent.appendChild(userMessage);
+        messageContent?.appendChild(userMessage);
         scrollToBottom();
     }
 
-    function displayChatGPTResponse(response) {
-        const chatGPTResponse = document.createElement('div');
+    function displayChatGPTResponse(response: string) {
+        const chatGPTResponse: HTMLDivElement = document.createElement('div');
         chatGPTResponse.classList.add('message', 'chatgpt-response');
         chatGPTResponse.textContent = response;
-        messageContent.appendChild(chatGPTResponse);
+        messageContent?.appendChild(chatGPTResponse);
         scrollToBottom();
     }
 
     function scrollToBottom() {
-        messageContent.scrollTop = messageContent.scrollHeight;
+        if (messageContent?.scrollTop) {
+            messageContent.scrollTop = messageContent.scrollHeight;
+        }
     }
 
-    async function sendMessageToChatGPT(message) {
+    async function sendMessageToChatGPT(message: string) {
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${import.meta.env.VITE_TOKEN}`
+                'Authorization': `Bearer ${params.token}`
             },
             body: JSON.stringify({
                 messages: [{ role: 'system', content: 'You are a helpful assistant.' }, { role: 'user', content: message }],
@@ -85,7 +110,7 @@ export function messengerContent(params) {
         });
 
         const { choices } = await response.json();
-        const chatGPTResponse = choices[0].message.content;
+        const chatGPTResponse: string = choices[0].message.content;
         displayChatGPTResponse(chatGPTResponse);
     }
 

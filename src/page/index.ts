@@ -5,7 +5,9 @@ import button_img from '../assets/chat.svg';
 
 (window as any).closeMessenger = () => {
   const messengerContentElem = document.getElementById('messenger-content');
-  messengerContentElem.style.display = 'none';
+  if(messengerContentElem){
+    messengerContentElem.style.display = 'none';
+  }
 };
 
 
@@ -15,9 +17,9 @@ export default class Messenger {
   }
 
   initializeMessenger(config: MessangerConfig) {
-    const element = document.getElementById(config.holder);
+    const element = document.getElementById(config.holder || 'app');
     if (!element) {
-      console.error(`Element with ID ${config.holder} not found.`);
+      console.error(`Element with ID ${config.holder || 'id of element'} not found.`);
       return;
     }
 
@@ -30,9 +32,9 @@ export default class Messenger {
 
     messengerButton.addEventListener('click', () => {
       const messengerContentElem = document.getElementById('messenger-content');
-      if (messengerContentElem.style.display === 'block') {
+      if (messengerContentElem && messengerContentElem.style.display === 'block') {
         messengerContentElem.style.display = 'none';
-      } else {
+      }else if(messengerContentElem && messengerContentElem.style.display === 'none') {
         messengerContentElem.style.display = 'block';
       }
     });
