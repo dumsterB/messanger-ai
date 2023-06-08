@@ -7,12 +7,17 @@ const messengerButton = document.createElement("button");
 (window as any).closeMessenger = () => {
   const messengerContentElem = document.getElementById("messenger-content");
   if (messengerContentElem) {
-    messengerButton.style.transition = "left 0.5s";
-    messengerContentElem.style.display = "none";
+    messengerContentElem.classList.remove("messenger-content-show");
+    messengerContentElem.classList.add("messenger-content-hide");
     messengerButton.classList.add("animate-bounce")
     setTimeout(()=>{
       messengerButton.classList.remove("animate-bounce")
-    },2500)
+    },1500)
+    setTimeout(() => {
+      messengerContentElem.style.display = "none";
+
+      messengerContentElem.classList.remove("messenger-content-hide");
+    }, 300); // Задержка для анимации
   }
 };
 
@@ -38,19 +43,26 @@ export default class Messenger {
 
     messengerButton.addEventListener("click", () => {
       const messengerContentElem = document.getElementById("messenger-content");
-      if (
-        messengerContentElem &&
-        messengerContentElem.style.display === "block"
-      ) {
-        messengerContentElem.style.display = "none";
-      } else if (
-        messengerContentElem &&
-        messengerContentElem.style.display === "none"
-      ) {
-        messengerButton.style.left = "block";
-        messengerContentElem.style.display = "block";
+
+      if (messengerContentElem) {
+        if (messengerContentElem.classList.contains("messenger-content-show")) {
+          // Скрываем элемент с анимацией
+          messengerContentElem.classList.remove("messenger-content-show");
+          messengerContentElem.classList.add("messenger-content-hide");
+
+          setTimeout(() => {
+            messengerContentElem.style.display = "none";
+            messengerContentElem.classList.remove("messenger-content-hide");
+          }, 300); // Задержка для анимации
+        } else {
+          // Показываем элемент с анимацией
+          messengerContentElem.style.display = "block";
+          messengerContentElem.classList.add("messenger-content-show");
+        }
       }
     });
+
+
 
     messengerContainer.appendChild(messengerButton);
     messengerContainer.appendChild(messengerContent(config));

@@ -20,14 +20,14 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
         <button class="messenger-close text-white" onclick="closeMessenger()">&times;</button>
       </div>
     </div>
-    <div class="messenger-body p-2">
+    <div class="messenger-body">
       <div class="messanger-content">
       ${SocialMedias(params?.socials)}
-      <div id="message-content" class="message-content mt-2"></div>
+      <div id="message-content" class="message-content mt-2 p-3"></div>
      </div>
       <div id="input-container" class="input-container flex">
-        <input  id="message-input" class="mt-4 border border-gray-300 rounded message-input rounded-lg" placeholder="Type your message here">
-        <button  id="send-button" class="mt-4 px-4 py-2 ml-2 bg-blue-500 text-white rounded">Send</button>
+        <input  id="message-input" class="mt-1 border border-gray-300 rounded message-input rounded-lg" placeholder="Type your message here">
+        <button  id="send-button" class="mt-1 px-4 py-2 ml-2 bg-blue-500 text-white rounded">Send</button>
       </div>
     </div>
   `;
