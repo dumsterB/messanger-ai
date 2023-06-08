@@ -1,7 +1,7 @@
 import './index.css';
 import avatar from '../../assets/avatar.jpg';
-import Socials from '../socials/index'
 import { MessangerConfig } from '../../types/index.ts';
+import { io, Socket } from 'socket.io-client';
 import SocialMedias from "../socials/index";
 
 export function messengerContent(params: MessangerConfig): HTMLElement {
@@ -22,7 +22,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     </div>
     <div class="messenger-body p-2">
       <div class="messanger-content">
-      ${SocialMedias(params.tools?.socials)}
+      ${SocialMedias(params?.socials)}
       <div id="message-content" class="message-content mt-2"></div>
      </div>
       <div id="input-container" class="input-container flex">
@@ -103,24 +103,37 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
             messageContent.scrollTop = messageContent.scrollHeight;
         }
     }
-
+    //
+    // async function sendMessageToChatGPT(message: string) {
+    //     const socket = Socket();
+    //     console.log(socket)
+    //     const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': `Bearer ${params.token}`
+    //         },
+    //         body: JSON.stringify({
+    //             messages: [{ role: 'system', content: 'You are a helpful assistant.' }, { role: 'user', content: message }],
+    //             model: 'gpt-3.5-turbo' // Замените на нужный идентификатор модели, например 'gpt-3.5-turbo'
+    //         })
+    //     });
+    //
+    //     const { choices } = await response.json();
+    //     const chatGPTResponse: string = choices[0].message.content;
+    //     displayChatGPTResponse(chatGPTResponse);
+    // }
     async function sendMessageToChatGPT(message: string) {
-        console.log(params)
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${params.token}`
-            },
-            body: JSON.stringify({
-                messages: [{ role: 'system', content: 'You are a helpful assistant.' }, { role: 'user', content: message }],
-                model: 'gpt-3.5-turbo' // Замените на нужный идентификатор модели, например 'gpt-3.5-turbo'
-            })
-        });
+        const socket: Socket = io('http://localhost:3000'); // Подключение к серверу socket.io
 
-        const { choices } = await response.json();
-        const chatGPTResponse: string = choices[0].message.content;
-        displayChatGPTResponse(chatGPTResponse);
+        // Отправка сообщения на сервер
+        socket.emit('userMessage', { message });
+
+        // Ожидание ответа от сервера
+        socket.on('chatGPTResponse', (response: string) => {
+            console.log(response)
+            displayChatGPTResponse(response);
+        });
     }
 
     return messengerContent;

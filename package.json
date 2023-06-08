@@ -1,7 +1,7 @@
 {
   "name": "messanger-ai",
   "private": false,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "exports": {
@@ -36,6 +36,6 @@
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "flowbite": "^1.6.5"
+    "socket.io-client": "^4.6.2"
   }
 }

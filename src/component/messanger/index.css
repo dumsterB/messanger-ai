@@ -29,7 +29,6 @@
   bottom: 10px;
   width: 300px;
   resize: none;
-  margin-left: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 25px;
@@ -97,7 +96,6 @@
 .input-container {
   position: absolute;
   bottom: 10px;
-  width: 100%;
   background: white;
 }
 .messenger-close {
