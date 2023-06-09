@@ -82,20 +82,32 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
 
     function displayUserMessage(message: string) {
+        const wrapper:HTMLDivElement = document.createElement('div')
+        const divider:HTMLDivElement = document.createElement('div')
         const userMessage: HTMLDivElement = document.createElement('div');
+        wrapper.style.display = 'flex'
+        divider.style.flex = '1 1'
         const text:HTMLParagraphElement = document.createElement('p')
         userMessage.classList.add('message', 'user-message');
         text.textContent = message;
         userMessage.appendChild(text)
-        messageContent?.appendChild(userMessage);
+        wrapper?.appendChild(divider)
+        wrapper?.appendChild(userMessage)
+        messageContent?.appendChild(wrapper);
         scrollToBottom();
     }
 
     function displayChatGPTResponse(response: string) {
+        const wrapper:HTMLDivElement = document.createElement('div')
+        const divider:HTMLDivElement = document.createElement('div')
         const chatGPTResponse: HTMLDivElement = document.createElement('div');
+        wrapper.style.display = 'flex'
+        divider.style.flex = '1 1'
         chatGPTResponse.classList.add('message', 'chatgpt-response');
         chatGPTResponse.textContent = response;
-        messageContent?.appendChild(chatGPTResponse);
+        wrapper?.appendChild(chatGPTResponse)
+        wrapper?.appendChild(divider)
+        messageContent?.appendChild(wrapper);
         scrollToBottom();
     }
 
