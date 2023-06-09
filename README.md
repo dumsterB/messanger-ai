@@ -16,7 +16,7 @@ yarn add messanger-ai
 ```
 ## Usage
 
-Vanilla JavaScript/TypeScript
+Vanilla TypeScript
 
 ```shell
 import Messenger, { MessangerConfig } from './component/index';
