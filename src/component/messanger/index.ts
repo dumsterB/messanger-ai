@@ -2,6 +2,7 @@ import './index.css';
 import avatar from '../../assets/avatar.jpg';
 import { MessangerConfig } from '../../types/index.ts';
 import { io, Socket } from 'socket.io-client';
+import {send} from '../../utils/icons'
 import SocialMedias from "../socials/index";
 
 export function messengerContent(params: MessangerConfig): HTMLElement {
@@ -27,7 +28,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
      </div>
       <div id="input-container" class="input-container flex">
         <input  id="message-input" class="mt-1 border border-gray-300 rounded message-input rounded-lg" placeholder="Type your message here">
-        <button  id="send-button" class="mt-1 px-4 py-2 ml-2 bg-blue-500 text-white rounded">Send</button>
+        <button  id="send-button" class="mt-1 px-4 py-2 ml-2 bg-blue-500 text-white rounded">${send}</button>
       </div>
     </div>
   `;

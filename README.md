@@ -35,7 +35,7 @@ new Messenger(config);
 
 ```
 
-Vue JS
+## Vue JS
 
 ```shell
 <template>
@@ -52,8 +52,8 @@ import 'messanger-ai/style.css';
 
 onMounted(() => {
     const options = {
-      title: 'Messenger Title Vue',
       holder: 'messanger',
+      name: 'Messenger Title Vue',
     };
     new Messenger(options);
 });
@@ -61,7 +61,7 @@ onMounted(() => {
 
 ```
 
-React JS
+## React JS
 
 ```shell
 import React, { useEffect } from 'react';
@@ -72,7 +72,7 @@ const App = () => {
   useEffect(() => {
     const config = {
       holder: 'messanger',
-      title: 'React App Ai',
+      name: 'React App Ai',
     };
     const messenger = new Messenger(config); // Use the correct path to the default object
     
@@ -90,4 +90,33 @@ const App = () => {
 };
 
 export default App;
+```
+
+## Options
+```shell
+It is an object containing information about an AI profile. It has the following properties:
+- holder: 'element_id', // ID of the HTML element that should contain the AI messenger
+- name: 'AI Name', // The name of the AI
+- picture: 'URL_to_picture', // The URL to the AI's picture
+- token: 'CHATGPT_TOKEN' // The token required for interacting with the ChatGPT
+- socials: [{link:'',type:''}] // your social medias
+
+The socials property is an array that contains objects representing different social media platforms associated with the AI. Each object has two properties:
+
+- link (string): The link to the AI's profile on a specific social media platform.
+- type (string): The type of social media platform. It can be one of the following values: "instagram", "telegram", "facebook", or "twitter".
+
+Here's an example of how to use the `options` object:
+
+
+```
+## Example of Socials
+
+```javascript
+  socials: [
+    { link: "https://instagram.com/name_of_account", type: "instagram" },
+    { link: "https://t.me/name_of_account", type: "telegram" },
+    { link: "https://facebook.com/name_of_account", type: "facebook" },
+    { link: "https://twitter.com/name_of_account", type: "twitter" }
+  ]
 ```
