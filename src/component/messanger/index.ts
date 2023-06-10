@@ -25,7 +25,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     </div>
     <div class="messenger-body">
       <div class="messanger-content">
-      ${SocialMedias(params?.socials)}
+      ${SocialMedias(params?.socials || [])}
       <div id="message-content" class="message-content mt-2 p-3"></div>
      </div>
       <div id="input-container" class="input-container flex">
@@ -108,6 +108,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   }
 
   function displayChatGPTResponse(response: string) {
+
     const wrapper: HTMLDivElement = document.createElement("div");
     const divider: HTMLDivElement = document.createElement("div");
     const chatGPTResponse: HTMLDivElement = document.createElement("div");
@@ -132,12 +133,10 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
       messageContent.scrollTop = messageContent.scrollHeight;
     }
   }
-  async function sendMessageToChatGPT(message: string) {
-    const data = await postGPT(message);
-    if (data) {
-        console.log(data)
-      displayChatGPTResponse(data);
-    }
+   function sendMessageToChatGPT(message: string) {
+     postGPT(message).then((res:any)=>{
+      displayChatGPTResponse(res)
+    });
   }
 
   return messengerContent;
