@@ -1,4 +1,4 @@
-import {io, Socket} from "socket.io-client";
+//import {io, Socket} from "socket.io-client";
 
 // export default function sendMessageToChatGPT(message: string): Promise<string> {
 //     return new Promise<string>((resolve, reject) => {
