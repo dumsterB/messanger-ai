@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+input:-webkit-autofill {
+  background: white;
+}
 .messenger-container {
   position: fixed;
   bottom: 50px;
   right: 50px;
 }
+
 #messenger-content {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;

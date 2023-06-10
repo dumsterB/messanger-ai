@@ -58,6 +58,7 @@ export default class Messenger {
           // Показываем элемент с анимацией
           messengerContentElem.style.display = "block";
           messengerContentElem.classList.add("messenger-content-show");
+          (window as any).setFocusOnMessageInput()
         }
       }
     });
