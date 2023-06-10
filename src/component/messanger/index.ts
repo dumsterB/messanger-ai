@@ -121,8 +121,8 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
     wrapper?.appendChild(chatGPTResponse);
     wrapper?.appendChild(divider);
-    wrapper?.appendChild(tagsComponent);
     messageContent?.appendChild(wrapper);
+    messageContent?.appendChild(tagsComponent)
 
     scrollToBottom();
   }
