@@ -16,7 +16,7 @@ yarn add messanger-ai
 ```
 ## Usage
 
-Vanilla JavaScript/TypeScript
+Vanilla TypeScript
 
 ```shell
 import Messenger, { MessangerConfig } from './component/index';
@@ -51,7 +51,7 @@ import 'messanger-ai/style.css';
 
 
 onMounted(() => {
-    const options = {
+    const config = {
       holder: 'messanger',
       name: 'Messenger Title Vue',
     };
@@ -92,7 +92,7 @@ const App = () => {
 export default App;
 ```
 
-## Options
+## Config
 ```shell
 It is an object containing information about an AI profile. It has the following properties:
 - holder: 'element_id', // ID of the HTML element that should contain the AI messenger
