@@ -134,7 +134,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     }
   }
    function sendMessageToChatGPT(message: string) {
-     postGPT(message).then((res:any)=>{
+     postGPT({message:message, token:params.token}).then((res:any)=>{
       displayChatGPTResponse(res)
     });
   }

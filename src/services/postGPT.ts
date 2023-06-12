@@ -1,5 +1,5 @@
 //import {io, Socket} from "socket.io-client";
-
+import {dataMessage} from '../types/index'
 // export default function sendMessageToChatGPT(message: string): Promise<string> {
 //     return new Promise<string>((resolve, reject) => {
 //         const socket: Socket = io('https://scumesc.pythonanywhere.com/'); // Подключение к серверу socket.io
@@ -17,13 +17,15 @@
 //         });
 //     });
 // }
-export default async function sendMessageToChatGPT(message: string) {
+
+export default async function sendMessageToChatGPT(data: dataMessage) {
     const response = await fetch('https://scumesc.pythonanywhere.com/process_json', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization':`Bearer ${data.token}`
         },
-        body: JSON.stringify({ 'text': message })
+        body: JSON.stringify({ 'text': data.message })
     });
 
     const result = await response.json();

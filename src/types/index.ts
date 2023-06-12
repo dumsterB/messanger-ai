@@ -11,3 +11,7 @@ export interface Socials {
   type: string;
   link: string;
 }
+export interface dataMessage{
+  message:string,
+  token:string,
+}
