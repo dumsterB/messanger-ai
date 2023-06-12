@@ -23,7 +23,9 @@ import Messenger, { MessangerConfig } from './component/index';
 
 const config: MessangerConfig = {
   holder: 'messenger',
-  title: "Open Ai"
+  name: "Open Ai",
+  token: 'GPT TOKEN'
+
 };
 
 const messengerElement = document.createElement('div');
@@ -53,7 +55,9 @@ import 'messanger-ai/style.css';
 onMounted(() => {
     const config = {
       holder: 'messanger',
-      name: 'Messenger Title Vue',
+      name: 'Open Ai',
+      token: 'GPT TOKEN'
+
     };
     new Messenger(options);
 });
@@ -72,7 +76,8 @@ const App = () => {
   useEffect(() => {
     const config = {
       holder: 'messanger',
-      name: 'React App Ai',
+      name: 'Open Ai',
+      token: 'GPT TOKEN'
     };
     const messenger = new Messenger(config); // Use the correct path to the default object
     
@@ -103,7 +108,7 @@ It is an object containing information about an AI profile. It has the following
 
 The socials property is an array that contains objects representing different social media platforms associated with the AI. Each object has two properties:
 
-- link (string): The link to the AI's profile on a specific social media platform.
+- link (string): The link to the  profile on a specific social media platform.
 - type (string): The type of social media platform. It can be one of the following values: "instagram", "telegram", "facebook", or "twitter".
 
 Here's an example of how to use the `options` object:

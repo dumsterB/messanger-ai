@@ -3,7 +3,7 @@ export interface MessangerConfig {
   tools?: any;
   socials?: Socials[];
   token: string;
-  image?:string;
+  picture?:string;
   name?: string;
 }
 
