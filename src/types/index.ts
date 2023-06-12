@@ -1,10 +1,9 @@
 export interface MessangerConfig {
-  holder?: string;
+  holder: string;
   tools?: any;
   socials?: Socials[];
-  placeholder?: string;
-  title?: string;
-  token?: string;
+  token: string;
+  image?:string;
   name?: string;
 }
 

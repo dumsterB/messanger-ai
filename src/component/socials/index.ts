@@ -44,7 +44,7 @@ export default function SocialMedias(params: Socials[]): string {
     if (params && params.length) {
         content = `
     <div>
-      <div class="max-w-2xl">
+      <div class="pt-1">
         <div class="grid grid-cols-5 gap-1 socials flex mt-2 border-b-2">
            ${socials.innerHTML}
          </div>   
