@@ -23,13 +23,10 @@ export default async function sendMessageToChatGPT(message: string) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            messages: [{ role: 'system', content: 'You are a helpful assistant.' }, { role: 'user', content: message }],
-            model: 'gpt-3.5-turbo' // Замените на нужный идентификатор модели, например 'gpt-3.5-turbo'
-        })
+        body: JSON.stringify({ 'text': message })
     });
 
-    const { choices } = await response.json();
-    // const chatGPTResponse: string = choices[0].message.content;
-    console.log(choices)
+    const result = await response.json();
+ 
+    return result.response
 }
