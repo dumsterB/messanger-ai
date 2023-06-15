@@ -1,6 +1,5 @@
 export interface MessangerConfig {
   holder: string;
-  tools?: any;
   socials?: Socials[];
   token: string;
   picture?:string;

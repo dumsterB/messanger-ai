@@ -3,7 +3,6 @@ import { MessangerConfig } from "./types/index.ts";
 
 const config: MessangerConfig = {
   holder: "messenger",
-  tools: [], // Здесь можно указать нужные инструменты
   socials: [
     { link: "https://instagram.com/name_of_account", type: "instagram" },
     { link: "https://t.me/name_of_account", type: "telegram" },
