@@ -26,4 +26,5 @@ const messengerElement = document.createElement("div");
 messengerElement.id = config.holder || "app";
 
 document.getElementById("app")!.appendChild(messengerElement);
+
 new Messenger(config);
