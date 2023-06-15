@@ -52,12 +52,13 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     if (message !== "") {
       displayUserMessage(message);
       messageInput!.value = "";
-      if(params.request){
-        params.request(message).then((res)=>{
-          displayChatGPTResponse(res)
-        })
-      }else{
-        sendMessageToChatGPT(message)
+
+      if (params.request) {
+        params.request(message).then((res: string) => {
+          displayChatGPTResponse(res);
+        });
+      } else {
+        sendMessageToChatGPT(message);
       }
     }
   }
