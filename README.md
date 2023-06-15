@@ -99,15 +99,16 @@ export default App;
 ## Config
 
 ### Menu settings
-Props (Parameter) | Type     | Default                                | Description
---------- |----------|----------------------------------------| -----------
-holder | `String` | `app`                                  | ID of the HTML element that should contain the AI messenger
-name | `String` | `Admin Ai`                             | The name of the AI
-picture | `String` | `'Picture of AI'`                      | The URL to the AI's picture (Logo)
-token | `String` | `Token to AI`                          | The token required for interacting with the ChatGPT
-socials | `Array`  | -                                      | Social medias
-color | `String` | ` #5c5cd6`                             | Colors of messanger
-header_background | `String` | `url('url_to_picture') or link to img` | Background of header
+Props (Parameter) | Type       | Default                                | Description
+--------- |------------|----------------------------------------| -----------
+holder | `String`   | `app`                                  | ID of the HTML element that should contain the AI messenger
+name | `String`   | `Admin Ai`                             | The name of the AI
+picture | `String`   | `'Picture of AI'`                      | The URL to the AI's picture (Logo)
+token | `String`   | `Token to AI`                          | The token required for interacting with the ChatGPT
+socials | `Array`    | -                                      | Social medias
+color | `String`   | ` #5c5cd6`                             | Colors of messanger
+header_background | `String`   | `url('url_to_picture') or link to img` | Background of header
+request | `Function` | `Request to our server`                | Custom request to the server
 
 ### Example of Socials
 

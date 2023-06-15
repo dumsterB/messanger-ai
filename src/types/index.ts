@@ -5,7 +5,8 @@ export interface MessangerConfig {
   picture?:string;
   name?: string;
   color?:string;
-  header_background?:string
+  header_background?:string,
+  request?: Function,
 }
 
 export interface Socials {

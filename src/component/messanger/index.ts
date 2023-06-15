@@ -52,7 +52,13 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     if (message !== "") {
       displayUserMessage(message);
       messageInput!.value = "";
-      sendMessageToChatGPT(message);
+      if(params.request){
+        params.request(message).then((res)=>{
+          displayChatGPTResponse(res)
+        })
+      }else{
+        sendMessageToChatGPT(message)
+      }
     }
   }
 
