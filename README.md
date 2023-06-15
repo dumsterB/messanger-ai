@@ -96,26 +96,20 @@ const App = () => {
 
 export default App;
 ```
-
 ## Config
-```shell
-It is an object containing information about an AI profile. It has the following properties:
-- holder: 'element_id', // ID of the HTML element that should contain the AI messenger
-- name: 'AI Name', // The name of the AI
-- picture: 'URL_to_picture', // The URL to the AI's picture
-- token: 'CHATGPT_TOKEN' // The token required for interacting with the ChatGPT
-- socials: [{link:'',type:''}] // your social medias
 
-The socials property is an array that contains objects representing different social media platforms associated with the AI. Each object has two properties:
+### Menu settings
+Props (Parameter) | Type     | Default                                | Description
+--------- |----------|----------------------------------------| -----------
+holder | `String` | `app`                                  | ID of the HTML element that should contain the AI messenger
+name | `String` | `Admin Ai`                             | The name of the AI
+picture | `String` | `'Picture of AI'`                      | The URL to the AI's picture (Logo)
+token | `String` | `Token to AI`                          | The token required for interacting with the ChatGPT
+socials | `Array`  | -                                      | Social medias
+color | `String` | ` #5c5cd6`                             | Colors of messanger
+header_background | `String` | `url('url_to_picture') or link to img` | Background of header
 
-- link (string): The link to the  profile on a specific social media platform.
-- type (string): The type of social media platform. It can be one of the following values: "instagram", "telegram", "facebook", or "twitter".
-
-Here's an example of how to use the `options` object:
-
-
-```
-## Example of Socials
+### Example of Socials
 
 ```javascript
   socials: [
