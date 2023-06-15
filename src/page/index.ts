@@ -24,6 +24,7 @@ const messengerButton = document.createElement("button");
 class Messenger {
   private messengerContentElem: HTMLElement;
   private messengerButton: HTMLButtonElement;
+  // @ts-ignore
   private params: MessangerConfig
 
   constructor(config: MessangerConfig) {

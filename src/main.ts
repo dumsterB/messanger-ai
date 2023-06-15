@@ -1,6 +1,5 @@
 import Messenger from "./page";
 import { MessangerConfig } from "./types/index.ts";
-import background_header from './assets/background-header.svg'
 
 const config: MessangerConfig = {
   holder: "messenger",

@@ -1,4 +1,4 @@
-import {MessangerConfig, Socials} from "../../types/index";
+import {MessangerConfig} from "../../types/index";
 import {
     instagram,
     telegram,
