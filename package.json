@@ -1,7 +1,7 @@
 {
   "name": "messanger-ai",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "exports": {
@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build rm dist/vite.svg",
     "preview": "vite preview"
   },
   "devDependencies": {
