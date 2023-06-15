@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build rm dist/vite.svg",
+    "build": "tsc && vite build &&  rm dist/vite.svg",
     "preview": "vite preview"
   },
   "devDependencies": {
