@@ -1,5 +1,6 @@
 import Messenger from "./page";
 import { MessangerConfig } from "./types/index.ts";
+import background_header from './assets/background-header.svg'
 
 const config: MessangerConfig = {
   holder: "messenger",
@@ -11,6 +12,8 @@ const config: MessangerConfig = {
     { link: "https://twitter.com/name_of_account", type: "twitter" }
   ],
   name: "Dumster Ai",
+  color:'#0097A7',
+  header_background: `url(https://code-jvs1.jivosite.com/images/pattern/1.svg)`,
   token: import.meta.env.VITE_TOKEN,
 };
 

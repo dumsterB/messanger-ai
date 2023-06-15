@@ -7,6 +7,7 @@ input:-webkit-autofill {
 }
 .messenger-container {
   position: fixed;
+  z-index: 1000;
   bottom: 50px;
   right: 50px;
 }

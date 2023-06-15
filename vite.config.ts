@@ -1,7 +1,12 @@
 import { defineConfig } from 'vite';
-import mkcert from 'vite-plugin-mkcert'
+import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
+    resolve: {
+        alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url))
+        }
+    },
     build: {
         lib: {
             entry: './src/plugin.ts',

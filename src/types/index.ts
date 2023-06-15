@@ -5,6 +5,8 @@ export interface MessangerConfig {
   token: string;
   picture?:string;
   name?: string;
+  color?:string;
+  header_background?:string
 }
 
 export interface Socials {
