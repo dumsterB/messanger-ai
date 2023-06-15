@@ -3,7 +3,7 @@ import Tags from '../tags/index'
 import { MessangerConfig } from "../../types/index.ts";
 import postGPT from "../../services/postGPT";
 import "./index.css";
-import avatar from "../../assets/avatar.jpg";
+import avatar from "../../assets/avatarImage.jpeg";
 import { send } from "../../utils/icons";
 
 export function messengerContent(params: MessangerConfig): HTMLElement {
