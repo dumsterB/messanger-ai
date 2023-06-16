@@ -86,6 +86,9 @@
   border: none;
   cursor: pointer;
 }
+.send-button:disabled{
+  opacity: .6;
+}
 .send-button-icon{
   margin: auto;
 }

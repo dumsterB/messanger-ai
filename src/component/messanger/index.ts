@@ -41,32 +41,28 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   if(messengerHeader) messengerHeader.style.background = params.header_background  || ''
   if(sendButton) sendButton.style.background = params.color || '';
 
-  (window as any).setFocusOnMessageInput = function () {
-    if (messageInput) {
-      messageInput.focus();
+
+
+ async function sendMessage(value?: string) {
+        sendButton.disabled = true;
+
+        let message = value ? value : messageInput.value.trim();
+
+        if (message !== "") {
+            displayUserMessage(message);
+            messageInput.value = "";
+
+            if (params.request) {
+                await params.request(message).then((res: string) => {
+                    displayChatGPTResponse(res);
+                });
+            } else {
+                await sendMessageToChatGPT(message);
+            }
+        }
+
+        sendButton.disabled = false;
     }
-  };
-
-  (window as any).setTag = function (event){
-    const buttonText = event.querySelector('.tagTextContent').textContent;
-    messageInput.value = buttonText
-  }
-
-  function sendMessage() {
-    const message: string = messageInput?.value?.trim() || "";
-    if (message !== "") {
-      displayUserMessage(message);
-      messageInput!.value = "";
-
-      if (params.request) {
-        params.request(message).then((res: string) => {
-          displayChatGPTResponse(res);
-        });
-      } else {
-        sendMessageToChatGPT(message);
-      }
-    }
-  }
 
   function displayUserMessage(message: string) {
     const wrapper: HTMLDivElement = document.createElement("div");
@@ -85,6 +81,8 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   }
 
   function displayChatGPTResponse(response: string) {
+    clearTags()
+
     const wrapper: HTMLDivElement = document.createElement("div");
     wrapper.style.display = "flex";
     const divider: HTMLDivElement = document.createElement("div");
@@ -95,9 +93,12 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     wrapper.appendChild(chatGPTResponse);
     wrapper.appendChild(divider);
     messageContent?.appendChild(wrapper);
+
     const tagsComponent: HTMLElement = document.createElement("div");
+    tagsComponent.classList.add('tag-wrapper')
     tagsComponent.innerHTML = Tags();
     messageContent?.appendChild(tagsComponent)
+
     scrollToBottom();
   }
 
@@ -124,6 +125,13 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
   if (sendButton) {
     sendButton.addEventListener("click", sendMessage);
+  }
+
+  function clearTags(){
+      let tagWrappers = document.getElementsByClassName('tag-wrapper');
+      while (tagWrappers.length > 0) {
+          tagWrappers[0].parentNode.removeChild(tagWrappers[0]);
+      }
   }
 
   return messengerContent;
