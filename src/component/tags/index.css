@@ -1,7 +1,17 @@
-.tags-button{
-    text-align: left;
+.tag{
+    fill: gray;
+    box-shadow: inset 0 0 0 1px lightgrey;
+    align-items: center;
     padding: 7px 14px;
     border-radius: 16px;
+    display: flex;
+    width: fit-content;
+}
+.tag:not(:first-child){
+    margin-top: 8px;
+}
+.tags-button{
+    text-align: left;
     display: flex;
     flex-direction: row;
     border: none;
@@ -10,8 +20,7 @@
     cursor: pointer;
     font-weight: 400;
     font-size: inherit;
-    fill: gray;
-    box-shadow: inset 0 0 0 1px lightgrey;
+
 }
 .tags-button span{
     text-align: right;

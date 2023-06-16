@@ -47,6 +47,11 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     }
   };
 
+  (window as any).setTag = function (event){
+    const buttonText = event.querySelector('.tagTextContent').textContent;
+    messageInput.value = buttonText
+  }
+
   function sendMessage() {
     const message: string = messageInput?.value?.trim() || "";
     if (message !== "") {
