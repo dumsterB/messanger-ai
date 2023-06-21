@@ -10,12 +10,12 @@ const config: MessangerConfig = {
     { link: "https://twitter.com/name_of_account", type: "twitter" }
   ],
   name: "Dumster Ai",
-  color:'#0097A7',
+
   header_background: `url(https://code-jvs1.jivosite.com/images/pattern/1.svg)`,
   token: import.meta.env.VITE_TOKEN,
-  request: sendGpt,
 };
-
+// color:'#0097A7',
+// request: sendGpt
 async function sendGpt(){
  const data = await fetch('https://jsonplaceholder.typicode.com/todos/1')
       .then(response => response.json())

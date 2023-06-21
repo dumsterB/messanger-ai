@@ -1,7 +1,10 @@
 import SocialMedias from "../socials/index";
-import Tags from '../tags/index'
+import Tags from "../tags/index";
 import { MessangerConfig } from "../../types/index.ts";
-import postGPT from "../../services/postGPT";
+import {
+  postMessageChatGPT,
+  sendMessageToGetPrompts,
+} from "../../services/postGPT";
 import "./index.css";
 import avatar from "../../assets/avatarImage.jpeg";
 import { send } from "../../utils/icons";
@@ -15,8 +18,12 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     <div class="messenger-header bg-gray-500">
       <div class="w-full h-12 flex justify-between">
         <div class="flex items-center">
-          <img class="w-12 h-12 rounded-full" src="${params.picture || avatar}" alt="Rounded avatar">
-          <span class="messenger-title text-white font-bold ml-2">${params.name || "Admin"}</span>
+          <img class="w-12 h-12 rounded-full" src="${
+            params.picture || avatar
+          }" alt="Rounded avatar">
+          <span class="messenger-title text-white font-bold ml-2">${
+            params.name || "Admin"
+          }</span>
         </div>
         <button class="messenger-close text-white" onclick="closeMessenger()">&times;</button>
       </div>
@@ -33,36 +40,67 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     </div>
   `;
 
-  const sendButton: HTMLButtonElement | null = messengerContent.querySelector("#send-button");
-  const messageInput: HTMLInputElement | null = messengerContent.querySelector("#message-input");
-  const messageContent: HTMLElement | null = messengerContent.querySelector("#message-content");
-  const messengerHeader: HTMLDivElement | null = messengerContent.querySelector('.messenger-header')
+  const sendButton: HTMLButtonElement | null =
+    messengerContent.querySelector("#send-button");
+  const messageInput: HTMLInputElement | null =
+    messengerContent.querySelector("#message-input");
+  const messageContent: HTMLElement | null =
+    messengerContent.querySelector("#message-content");
+  const messengerHeader: HTMLDivElement | null =
+    messengerContent.querySelector(".messenger-header");
 
-  if(messengerHeader) messengerHeader.style.background = params.header_background  || ''
-  if(sendButton) sendButton.style.background = params.color || '';
+  if (messengerHeader)
+    messengerHeader.style.background = params.header_background || "";
+  if (sendButton) sendButton.style.background = params.color || "";
 
-
-
- async function sendMessage(value?: string) {
-        sendButton.disabled = true;
-
-        let message = value ? value : messageInput.value.trim();
-
-        if (message !== "") {
-            displayUserMessage(message);
-            messageInput.value = "";
-
-            if (params.request) {
-                await params.request(message).then((res: string) => {
-                    displayChatGPTResponse(res);
-                });
-            } else {
-                await sendMessageToChatGPT(message);
-            }
-        }
-
-        sendButton.disabled = false;
+  (window as any).setFocusOnMessageInput = function () {
+    if (messageInput) {
+      if (messageInput === document.activeElement) {
+        messageInput.blur();
+      } else {
+        messageInput.focus();
+      }
     }
+  };
+
+  (window as any).setTag = function (event) {
+    const buttonText = event.querySelector(".tagTextContent").textContent;
+    sendMessage(buttonText);
+  };
+
+  async function sendMessage(value) {
+    (window as any).setFocusOnMessageInput();
+    sendButton.disabled = true;
+
+    let message: string;
+    if (!value) {
+      message = messageInput?.value?.trim() || "";
+    } else {
+      message = value;
+    }
+    if (message !== "") {
+      displayUserMessage(message);
+      messageInput!.value = "";
+
+      if (params.request) {
+        try {
+          const res = await params.request(message);
+          displayChatGPTResponse(res);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        await sendMessageToChatGPT(message);
+      }
+      const prompts = sendMessageToGetPrompts({
+        message: message,
+        token: params.token,
+      });
+      console.log(prompts);
+    }
+    (window as any).setFocusOnMessageInput();
+    sendButton.disabled = false;
+  }
 
   function displayUserMessage(message: string) {
     const wrapper: HTMLDivElement = document.createElement("div");
@@ -81,7 +119,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   }
 
   function displayChatGPTResponse(response: string) {
-    clearTags()
+    clearTags();
 
     const wrapper: HTMLDivElement = document.createElement("div");
     wrapper.style.display = "flex";
@@ -95,9 +133,9 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     messageContent?.appendChild(wrapper);
 
     const tagsComponent: HTMLElement = document.createElement("div");
-    tagsComponent.classList.add('tag-wrapper')
+    tagsComponent.classList.add("tag-wrapper");
     tagsComponent.innerHTML = Tags();
-    messageContent?.appendChild(tagsComponent)
+    messageContent?.appendChild(tagsComponent);
 
     scrollToBottom();
   }
@@ -108,10 +146,16 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     }
   }
 
-  function sendMessageToChatGPT(message: string) {
-    postGPT({ message: message, token: params.token }).then((res: any) => {
-      displayChatGPTResponse(res);
-    });
+  async function sendMessageToChatGPT(message: string) {
+    try {
+      await postMessageChatGPT({ message: message, token: params.token }).then(
+        (res: any) => {
+          displayChatGPTResponse(res);
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   if (messageInput) {
@@ -127,11 +171,11 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     sendButton.addEventListener("click", sendMessage);
   }
 
-  function clearTags(){
-      let tagWrappers = document.getElementsByClassName('tag-wrapper');
-      while (tagWrappers.length > 0) {
-          tagWrappers[0].parentNode.removeChild(tagWrappers[0]);
-      }
+  function clearTags() {
+    let tagWrappers = document.getElementsByClassName("tag-wrapper");
+    while (tagWrappers.length > 0) {
+      tagWrappers[0].parentNode.removeChild(tagWrappers[0]);
+    }
   }
 
   return messengerContent;

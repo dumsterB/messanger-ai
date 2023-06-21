@@ -18,7 +18,7 @@ import {dataMessage} from '../types/index'
 //     });
 // }
 
-export default async function sendMessageToChatGPT(data: dataMessage) {
+async function postMessageChatGPT(data: dataMessage) {
     const response = await fetch('https://scumesc.pythonanywhere.com/process_json', {
         method: 'POST',
         headers: {
@@ -32,3 +32,19 @@ export default async function sendMessageToChatGPT(data: dataMessage) {
  
     return result.response
 }
+
+async function sendMessageToGetPrompts(data) {
+    const response = await fetch('https://scumesc.pythonanywhere.com/process_json2', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization':`Bearer ${data.token}`
+        },
+        body: JSON.stringify({ 'text': data.message })
+    });
+
+    const result = await response.json();
+
+    return result.response
+}
+export { postMessageChatGPT, sendMessageToGetPrompts}
