@@ -48,11 +48,14 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     messengerContent.querySelector("#message-content");
   const messengerHeader: HTMLDivElement | null =
     messengerContent.querySelector(".messenger-header");
-  const messenger_body = messengerContent.querySelector('.messenger-body')
-  if(!SocialMedias(params)){
-   messageContent.style.height = '380px'
-    messenger_body.style.height = '450px'
+  const messenger_body: HTMLDivElement | null =
+    messengerContent.querySelector(".messenger-body");
+
+  if (!SocialMedias(params)) {
+    if (messageContent) messageContent.style.height = "380px";
+    if (messenger_body) messenger_body.style.height = "450px";
   }
+
   if (messengerHeader)
     messengerHeader.style.background = params.header_background || "";
   if (sendButton) sendButton.style.background = params.color || "";
@@ -72,9 +75,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     sendMessage(buttonText);
   };
 
-
-  async function sendMessage(value?:string) {
-    (window as any).setFocusOnMessageInput();
+  async function sendMessage(value?: string) {
     if (sendButton) sendButton.disabled = true;
 
     let message: string;
@@ -172,7 +173,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   }
 
   if (sendButton) {
-    sendButton.addEventListener("click",()=> sendMessage());
+    sendButton.addEventListener("click", () => sendMessage());
   }
 
   function clearTags() {
