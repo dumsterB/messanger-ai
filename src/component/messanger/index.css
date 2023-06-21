@@ -43,8 +43,8 @@
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 400px;
-  height: 600px;
+  width: 330px;
+  height: 500px;
   background-color: #8a909d;
   border-radius: 15px;
   box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
@@ -52,9 +52,11 @@
 }
 
 .messenger-header {
-  padding: 15px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   background: url("https://code-jvs1.jivosite.com/images/pattern/2.svg");
-  height: 80px;
+  height: 65px;
   border-radius: 15px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -65,6 +67,7 @@
 .message-input {
   bottom: 10px;
   width: 325px;
+  height: 40px;
   resize: none;
   padding: 10px;
   border: 1px solid #ccc;
@@ -74,11 +77,11 @@
 
 .send-button {
   margin:auto;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 40px;
   background-color: #5c5cd6;
   border-radius: 50%;
-  margin-left: 10px;
+  margin-left: 5px;
   margin-top: 3px;
   display: flex;
   justify-content: center;
@@ -94,12 +97,17 @@
 }
 
 .message-content {
-  height: 360px;
+  height: 305px;
   scroll-behavior: smooth;
   overflow-y: scroll;
   padding: 5px;
   padding-bottom: 10px;
 }
+.message-content::-webkit-scrollbar{
+  width: 0;
+  background-color: transparent;
+}
+
 
 .message {
   margin-bottom: 10px;
@@ -113,7 +121,8 @@
   text-align: right;
   align-self: flex-end;
   border-radius: 12px;
-  padding: 10px;
+  font-size: 14px;
+  padding: 6px;
   float: right;
   max-width: 55ch;
   margin-top: 10px;
@@ -122,8 +131,9 @@
 
 .chatgpt-response {
   background-color: #f2f2f2;
+  font-size: 14px;
   border-radius: 12px;
-  padding: 10px;
+  padding: 6px;
   float: left;
   max-width: 55ch;
   margin-bottom: 10px;
@@ -135,7 +145,7 @@
 
 
 .messenger-body {
-  height: 520px;
+  height: 420px;
   overflow: hidden;
   position: relative;
   box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
@@ -144,8 +154,8 @@
 }
 .input-container {
   position: absolute;
-  bottom: 1px;
-  padding: 8px;
+  bottom: 0;
+  padding: 4px 5px 5px 5px;
   background: white;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -158,11 +168,11 @@
   background-color: rgba(255, 255, 255, 0.25);
   color: white;
   border: none;
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
+  margin-top: 2px;
   cursor: pointer;
-  padding-bottom: 2px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .messenger-close:hover {

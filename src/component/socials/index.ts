@@ -54,7 +54,7 @@ export default function SocialMedias(params: MessangerConfig): string {
     </div>
   `;
     } else {
-        return `<div></div>`;
+        return '';
     }
 
     return content;

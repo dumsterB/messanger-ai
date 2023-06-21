@@ -18,7 +18,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     <div class="messenger-header bg-gray-500">
       <div class="w-full h-12 flex justify-between">
         <div class="flex items-center">
-          <img class="w-12 h-12 rounded-full" src="${
+          <img class="w-11 h-11 rounded-full" src="${
             params.picture || avatar
           }" alt="Rounded avatar">
           <span class="messenger-title text-white font-bold ml-2">${
@@ -31,7 +31,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     <div class="messenger-body">
       <div class="messanger-content">
         ${SocialMedias(params || {})}
-        <div id="message-content" class="message-content mt-1 p-2"></div>
+        <div id="message-content" class="message-content chats mt-1 p-2"></div>
       </div>
       <div id="input-container" class="input-container flex">
         <input id="message-input" class="mt-1 border border-gray-300 rounded message-input rounded-lg" placeholder="Type your message here">
@@ -48,7 +48,11 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     messengerContent.querySelector("#message-content");
   const messengerHeader: HTMLDivElement | null =
     messengerContent.querySelector(".messenger-header");
-
+  const messenger_body = messengerContent.querySelector('.messenger-body')
+  if(!SocialMedias(params)){
+   messageContent.style.height = '380px'
+    messenger_body.style.height = '450px'
+  }
   if (messengerHeader)
     messengerHeader.style.background = params.header_background || "";
   if (sendButton) sendButton.style.background = params.color || "";
@@ -63,14 +67,15 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     }
   };
 
-  (window as any).setTag = function (event) {
+  (window as any).setTag = function (event: any) {
     const buttonText = event.querySelector(".tagTextContent").textContent;
     sendMessage(buttonText);
   };
 
-  async function sendMessage(value) {
+
+  async function sendMessage(value?:string) {
     (window as any).setFocusOnMessageInput();
-    sendButton.disabled = true;
+    if (sendButton) sendButton.disabled = true;
 
     let message: string;
     if (!value) {
@@ -98,8 +103,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
       });
       console.log(prompts);
     }
-    (window as any).setFocusOnMessageInput();
-    sendButton.disabled = false;
+    if (sendButton) sendButton.disabled = false;
   }
 
   function displayUserMessage(message: string) {
@@ -168,13 +172,13 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   }
 
   if (sendButton) {
-    sendButton.addEventListener("click", sendMessage);
+    sendButton.addEventListener("click",()=> sendMessage());
   }
 
   function clearTags() {
     let tagWrappers = document.getElementsByClassName("tag-wrapper");
     while (tagWrappers.length > 0) {
-      tagWrappers[0].parentNode.removeChild(tagWrappers[0]);
+      tagWrappers[0]?.parentNode?.removeChild(tagWrappers[0]);
     }
   }
 

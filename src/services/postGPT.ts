@@ -1,5 +1,5 @@
 //import {io, Socket} from "socket.io-client";
-import {dataMessage} from '../types/index'
+import { dataMessage } from "../types/index";
 // export default function sendMessageToChatGPT(message: string): Promise<string> {
 //     return new Promise<string>((resolve, reject) => {
 //         const socket: Socket = io('https://scumesc.pythonanywhere.com/'); // Подключение к серверу socket.io
@@ -19,32 +19,38 @@ import {dataMessage} from '../types/index'
 // }
 
 async function postMessageChatGPT(data: dataMessage) {
-    const response = await fetch('https://scumesc.pythonanywhere.com/process_json', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization':`Bearer ${data.token}`
-        },
-        body: JSON.stringify({ 'text': data.message })
-    });
+  const response = await fetch(
+    "https://scumesc.pythonanywhere.com/process_json",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${data.token}`,
+      },
+      body: JSON.stringify({ text: data.message }),
+    }
+  );
 
-    const result = await response.json();
- 
-    return result.response
+  const result = await response.json();
+
+  return result.response;
 }
 
-async function sendMessageToGetPrompts(data) {
-    const response = await fetch('https://scumesc.pythonanywhere.com/process_json2', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization':`Bearer ${data.token}`
-        },
-        body: JSON.stringify({ 'text': data.message })
-    });
+async function sendMessageToGetPrompts(data: dataMessage) {
+  const response = await fetch(
+    "https://scumesc.pythonanywhere.com/process_json2",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${data.token}`,
+      },
+      body: JSON.stringify({ text: data.message }),
+    }
+  );
 
-    const result = await response.json();
+  const result = await response.json();
 
-    return result.response
+  return result.response;
 }
-export { postMessageChatGPT, sendMessageToGetPrompts}
+export { postMessageChatGPT, sendMessageToGetPrompts };

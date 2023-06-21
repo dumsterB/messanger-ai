@@ -2,7 +2,8 @@
     fill: gray;
     box-shadow: inset 0 0 0 1px lightgrey;
     align-items: center;
-    padding: 7px 14px;
+    padding: 4px 10px;
+    font-size: 12px;
     border-radius: 16px;
     display: flex;
     width: fit-content;
