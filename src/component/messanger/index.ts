@@ -1,4 +1,5 @@
 import SocialMedias from "../socials/index";
+import {updatePrompts} from "../tags/index";
 import Tags from "../tags/index";
 import { MessangerConfig } from "../../types/index.ts";
 import {
@@ -34,7 +35,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
         <div id="message-content" class="message-content chats mt-1 p-2"></div>
       </div>
       <div id="input-container" class="input-container flex">
-        <input id="message-input" class="mt-1 border border-gray-300 rounded message-input rounded-lg" placeholder="Type your message here">
+        <input id="message-input" class="mt-1 border border-gray-200 rounded message-input rounded-lg" placeholder="Type your message here">
         <button id="send-button" class="send-button text-white button"> <span class="send-button-icon">${send}</span> </button>
       </div>
     </div>
@@ -50,6 +51,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     messengerContent.querySelector(".messenger-header");
   const messenger_body: HTMLDivElement | null =
     messengerContent.querySelector(".messenger-body");
+  const tagsComponent: HTMLElement = document.createElement("div");
 
   if (!SocialMedias(params)) {
     if (messageContent) messageContent.style.height = "380px";
@@ -90,19 +92,31 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
       if (params.request) {
         try {
-          const res = await params.request(message);
-          displayChatGPTResponse(res);
+           await params.request(message).then(() => {
+            sendMessageToGetPrompts({
+              message: message,
+              token: params.token,
+            }).then((res) => {
+              updatePrompts(res)
+              console.log(res);
+            });
+          });
         } catch (error) {
           console.log(error);
         }
       } else {
         await sendMessageToChatGPT(message);
+        const res = await sendMessageToGetPrompts({
+          message: message,
+          token: params.token,
+        });
+        clearTags();
+        updatePrompts(res)
+        tagsComponent.classList.add("tag-wrapper");
+        tagsComponent.innerHTML = Tags();
+        messageContent?.appendChild(tagsComponent)
       }
-      const prompts = sendMessageToGetPrompts({
-        message: message,
-        token: params.token,
-      });
-      console.log(prompts);
+
     }
     if (sendButton) sendButton.disabled = false;
   }
@@ -124,7 +138,6 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   }
 
   function displayChatGPTResponse(response: string) {
-    clearTags();
 
     const wrapper: HTMLDivElement = document.createElement("div");
     wrapper.style.display = "flex";
@@ -136,11 +149,8 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     wrapper.appendChild(chatGPTResponse);
     wrapper.appendChild(divider);
     messageContent?.appendChild(wrapper);
-
-    const tagsComponent: HTMLElement = document.createElement("div");
-    tagsComponent.classList.add("tag-wrapper");
-    tagsComponent.innerHTML = Tags();
     messageContent?.appendChild(tagsComponent);
+
 
     scrollToBottom();
   }

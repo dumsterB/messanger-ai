@@ -70,7 +70,6 @@
   height: 40px;
   resize: none;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 25px;
   outline: none;
 }
@@ -157,11 +156,11 @@
   bottom: 0;
   padding: 4px 5px 5px 5px;
   background: white;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   z-index: 11;
   width: 100%;
-  border-top: 1px solid lightgrey;
+  border-top: 1px solid #ECEFF1;
 }
 .messenger-close {
   border-radius: 50%;

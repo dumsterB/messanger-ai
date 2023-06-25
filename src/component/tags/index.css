@@ -12,7 +12,6 @@
     margin-top: 8px;
 }
 .tags-button{
-    text-align: left;
     display: flex;
     flex-direction: row;
     border: none;
@@ -21,8 +20,9 @@
     cursor: pointer;
     font-weight: 400;
     font-size: inherit;
-
 }
-.tags-button span{
-    text-align: right;
+.tagTextContent{
+    text-align: initial;
+    width: 100%;
+    word-break: break-all;
 }

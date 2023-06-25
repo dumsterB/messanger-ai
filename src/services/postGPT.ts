@@ -20,7 +20,7 @@ import { dataMessage } from "../types/index";
 
 async function postMessageChatGPT(data: dataMessage) {
   const response = await fetch(
-    "https://scumesc.pythonanywhere.com/process_json",
+    "https://scumesc.onrender.com/process_json/",
     {
       method: "POST",
       headers: {
@@ -38,7 +38,7 @@ async function postMessageChatGPT(data: dataMessage) {
 
 async function sendMessageToGetPrompts(data: dataMessage) {
   const response = await fetch(
-    "https://scumesc.pythonanywhere.com/process_json2",
+    "https://scumesc.onrender.com/process_json2/",
     {
       method: "POST",
       headers: {
