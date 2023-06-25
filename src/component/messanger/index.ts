@@ -79,6 +79,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
   async function sendMessage(value?: string) {
     if (sendButton) sendButton.disabled = true;
+    if(messageInput) messageInput.disabled = true
 
     let message: string;
     if (!value) {
@@ -111,6 +112,13 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
           token: params.token,
         });
         clearTags();
+        res.forEach((element,index) => {
+          if(element.length < 1){
+           res.splice(index,1)
+          }
+        });
+        console.log(res)
+
         updatePrompts(res)
         tagsComponent.classList.add("tag-wrapper");
         tagsComponent.innerHTML = Tags();
@@ -119,6 +127,8 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
     }
     if (sendButton) sendButton.disabled = false;
+    if(messageInput) messageInput.disabled = false
+
   }
 
   function displayUserMessage(message: string) {
