@@ -47,6 +47,12 @@ export default function SocialMedias(params: MessangerConfig): string {
     });
   }
 
+  // if (socials == "div") {
+  //   if(socials.social_icon.Telegram == 'Telegram') {
+  //     console.log('telegram');
+  //   }
+  // }
+
   let content = "";
 
   if (params.socials && params.socials.length) {
