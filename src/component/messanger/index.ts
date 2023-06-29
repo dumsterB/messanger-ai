@@ -1,7 +1,8 @@
 import SocialMedias from "../socials/index";
-import {updatePrompts} from "../tags/index";
+import { updatePrompts } from "../tags/index";
 import Tags from "../tags/index";
-import { MessangerConfig,Prompt } from "../../types/index.ts";
+import Loader from '../loader/index'
+import { MessangerConfig, Prompt } from "../../types/index.ts";
 import {
   postMessageChatGPT,
   sendMessageToGetPrompts,
@@ -52,6 +53,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   const messenger_body: HTMLDivElement | null =
     messengerContent.querySelector(".messenger-body");
   const tagsComponent: HTMLElement = document.createElement("div");
+  const loaderComponents: HTMLDivElement = document.createElement('div')
 
   if (!SocialMedias(params)) {
     if (messageContent) messageContent.style.height = "380px";
@@ -79,7 +81,8 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
   async function sendMessage(value?: string) {
     if (sendButton) sendButton.disabled = true;
-    if(messageInput) messageInput.disabled = false;
+    if (messageInput) messageInput.disabled = false;
+    loaderComponents.innerHTML = Loader(true)
 
     let message: string;
     if (!value) {
@@ -93,13 +96,12 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
       if (params.request) {
         try {
-           await params.request(message).then(() => {
+          await params.request(message).then(() => {
             sendMessageToGetPrompts({
               message: message,
               token: params.token,
             }).then((res) => {
-              updatePrompts(res)
-              console.log(res);
+              updatePrompts(res);
             });
           });
         } catch (error) {
@@ -107,23 +109,23 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
         }
       } else {
         await sendMessageToChatGPT(message);
-        let res:Prompt[] = await sendMessageToGetPrompts({
+        let res: Prompt[] = await sendMessageToGetPrompts({
           message: message,
           token: params.token,
         });
         clearTags();
         res = res.filter((element) => element.length > 0);
 
-        updatePrompts(res)
+        updatePrompts(res);
         tagsComponent.classList.add("tag-wrapper");
         tagsComponent.innerHTML = Tags();
-        messageContent?.appendChild(tagsComponent)
+        loaderComponents.innerHTML = Loader(false)
+        messageContent?.appendChild(tagsComponent);
+        messageContent?.appendChild(loaderComponents);
       }
-
     }
     if (sendButton) sendButton.disabled = false;
     // if(messageInput) messageInput.disabled = false;
-
   }
 
   function displayUserMessage(message: string) {
@@ -143,7 +145,6 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   }
 
   function displayChatGPTResponse(response: string) {
-
     const wrapper: HTMLDivElement = document.createElement("div");
     wrapper.style.display = "flex";
     const divider: HTMLDivElement = document.createElement("div");
@@ -155,7 +156,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     wrapper.appendChild(divider);
     messageContent?.appendChild(wrapper);
     messageContent?.appendChild(tagsComponent);
-
+    messageContent?.appendChild(loaderComponents);
 
     scrollToBottom();
   }
@@ -181,8 +182,10 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   if (messageInput) {
     messageInput.addEventListener("keydown", (event: KeyboardEvent) => {
       if (event.keyCode === 13) {
-        event.preventDefault(); // Prevent the default behavior of the Enter key
-        sendMessage();
+        if (sendButton && !sendButton.disabled) {
+          event.preventDefault(); // Prevent the default behavior of the Enter key
+          sendMessage();
+        }
       }
     });
   }
