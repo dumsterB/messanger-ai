@@ -82,7 +82,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   async function sendMessage(value?: string) {
     if (sendButton) sendButton.disabled = true;
     if (messageInput) messageInput.disabled = false;
-    loaderComponents.innerHTML = Loader(true)
+    loaderComponents.innerHTML = Loader(true);
 
     let message: string;
     if (!value) {
@@ -96,11 +96,12 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
       if (params.request) {
         try {
-          await params.request(message).then(() => {
-            sendMessageToGetPrompts({
+          await params.request(message).then(async () => {
+            await sendMessageToGetPrompts({
               message: message,
               token: params.token,
             }).then((res) => {
+              loaderComponents.innerHTML = Loader(false);
               updatePrompts(res);
             });
           });
@@ -108,25 +109,26 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
           console.log(error);
         }
       } else {
-        await sendMessageToChatGPT(message);
-        let res: Prompt[] = await sendMessageToGetPrompts({
-          message: message,
-          token: params.token,
+        await sendMessageToChatGPT(message).then(async () => {
+          let res: Prompt[] = await sendMessageToGetPrompts({
+            message: message,
+            token: params.token,
+          });
+          loaderComponents.innerHTML = Loader(false);
+          clearTags();
+          res = res.filter((element) => element.length > 0);
+          updatePrompts(res);
+          tagsComponent.classList.add("tag-wrapper");
+          tagsComponent.innerHTML = Tags();
+          messageContent?.appendChild(tagsComponent);
         });
-        clearTags();
-        res = res.filter((element) => element.length > 0);
-
-        updatePrompts(res);
-        tagsComponent.classList.add("tag-wrapper");
-        tagsComponent.innerHTML = Tags();
-        loaderComponents.innerHTML = Loader(false)
-        messageContent?.appendChild(tagsComponent);
-        messageContent?.appendChild(loaderComponents);
       }
     }
     if (sendButton) sendButton.disabled = false;
     // if(messageInput) messageInput.disabled = false;
   }
+
+
 
   function displayUserMessage(message: string) {
     const wrapper: HTMLDivElement = document.createElement("div");
