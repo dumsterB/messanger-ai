@@ -26,7 +26,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
             params.name || "Admin"
           }</span>
         </div>
-        <button class="messenger-close text-white" onclick="closeMessenger()">&times;</button>
+        <button class="messenger-close" onclick="closeMessenger()">&times;</button>
       </div>
     </div>
     <div class="messenger-body">
@@ -34,9 +34,9 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
         ${SocialMedias(params || {})}
         <div id="message-content" class="message-content chats mt-1 p-2"></div>
       </div>
-      <div id="input-container" class="input-container flex">
-        <input id="message-input" class="mt-1 border border-gray-200 rounded message-input rounded-lg" placeholder="Type your message here">
-        <button id="send-button" class="send-button text-white button"> <span class="send-button-icon">${send}</span> </button>
+      <div id="input-container" class="input-container">
+        <textarea id="message-input" class="mt-1 border border-gray-200 rounded message-input rounded-lg break-all	" placeholder="Type your message here"></textarea>
+        <button id="send-button" class="send-button text-white button"> <span class="send-button-icon">${send}</span></button>
       </div>
     </div>
   `;
@@ -55,7 +55,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
   if (!SocialMedias(params)) {
     if (messageContent) messageContent.style.height = "380px";
-    if (messenger_body) messenger_body.style.height = "450px";
+    if (messenger_body) messenger_body.style.height = "470px";
   }
 
   if (messengerHeader)
@@ -79,7 +79,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
   async function sendMessage(value?: string) {
     if (sendButton) sendButton.disabled = true;
-    if(messageInput) messageInput.disabled = true
+    if(messageInput) messageInput.disabled = false;
 
     let message: string;
     if (!value) {
@@ -127,7 +127,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
     }
     if (sendButton) sendButton.disabled = false;
-    if(messageInput) messageInput.disabled = false
+    // if(messageInput) messageInput.disabled = false;
 
   }
 
