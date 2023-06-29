@@ -17,3 +17,5 @@ export interface dataMessage{
   message:string,
   token:string,
 }
+
+export interface Prompt extends Array<string> {}

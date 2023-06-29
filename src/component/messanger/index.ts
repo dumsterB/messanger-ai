@@ -1,7 +1,7 @@
 import SocialMedias from "../socials/index";
 import {updatePrompts} from "../tags/index";
 import Tags from "../tags/index";
-import { MessangerConfig } from "../../types/index.ts";
+import { MessangerConfig,Prompt } from "../../types/index.ts";
 import {
   postMessageChatGPT,
   sendMessageToGetPrompts,
@@ -107,17 +107,12 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
         }
       } else {
         await sendMessageToChatGPT(message);
-        const res = await sendMessageToGetPrompts({
+        let res:Prompt[] = await sendMessageToGetPrompts({
           message: message,
           token: params.token,
         });
         clearTags();
-        res.forEach((element,index) => {
-          if(element.length < 1){
-           res.splice(index,1)
-          }
-        });
-        console.log(res)
+        res = res.filter((element) => element.length > 0);
 
         updatePrompts(res)
         tagsComponent.classList.add("tag-wrapper");
