@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-* {
-  font-family: 'Roboto', sans-serif!important;
-}
-
 
 input:-webkit-autofill {
   background: white;
@@ -22,6 +17,7 @@ input:-webkit-autofill {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
+
 .messenger-button {
   background-color: #5c5cd6;
   color: white;
@@ -34,7 +30,22 @@ input:-webkit-autofill {
   align-items: center;
 }
 
+@media screen and (max-width: 450px) {
+  .messenger-button {
+    height: 50px;
+    width: 50px;
+  }
+
+  .chat-img {
+    text-align: center;
+    height: 35px;
+    width: 35px;
+  }
+}
+
 .chat-img {
   height: 45px;
   margin: auto;
+  text-align: center;
+  align-items: center;
 }

@@ -55,8 +55,8 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
 
   if (!SocialMedias(params)) {
     if (messageContent) messageContent.style.height = "380px";
-    if (messenger_body) messenger_body.style.height = "470px";
-  }
+    if (messenger_body) messenger_body.style.height = "440px";
+  };
 
   if (messengerHeader)
     messengerHeader.style.background = params.header_background || "";
