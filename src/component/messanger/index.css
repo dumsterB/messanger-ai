@@ -115,16 +115,29 @@
   padding: 5px;
   padding-bottom: 10px;
   font-family: 'Roboto', sans-serif!important;
-}
-.message-content::-webkit-scrollbar{
+}  
+.message-content::-webkit-scrollbar {
+    width: 5px;
+  }
+
+.message-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+.message-content::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgb(140, 146, 158);
+    border: 1px solid rgb(140, 146, 158);
+  }
+/* .message-content::-webkit-scrollbar{
   width: 0;
   background-color: transparent;
-}
+} */
 
 .message {
   margin-bottom: 10px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 13px;
   overflow: hidden; /* Добавлено */
   font-family: 'Roboto', sans-serif!important;
 }
@@ -132,7 +145,7 @@
   background-color: #5c5cd6;
   color: white;
   text-align: left;
-  border-radius: 12px;
+  border-radius: 13px;
   font-size: 14px;
   padding: 10px;
   float: right;
@@ -146,10 +159,10 @@
 }
 
 .chatgpt-response {
-  border-bottom-left-radius: 1px;
+  border-bottom-left-radius: 1px!important;
   background-color: #f2f2f2;
   font-size: 14px;
-  border-radius: 12px;
+  border-radius: 13px;
   padding: 6px;
   float: left;
   max-width: 250px;
