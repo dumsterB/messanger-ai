@@ -1,4 +1,4 @@
-export default function Loader(value) {
+export default function Loader(value:Boolean) {
   let content = "";
   if (value) {
      content = `

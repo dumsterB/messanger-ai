@@ -14,6 +14,8 @@ or
 yarn add messanger-ai
 
 ```
+## Demo
+[View demo](https://github.com/dumsterB/react-messanger-ai) | [Sandbox](https://codesandbox.io/p/github/dumsterB/react-messanger-ai/main?workspaceId=9f9d664d-faec-4975-a4a9-226cb5e1cf1b)
 ## Usage
 
 Vanilla TypeScript
