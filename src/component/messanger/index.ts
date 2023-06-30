@@ -1,7 +1,7 @@
 import SocialMedias from "../socials/index";
 import { updatePrompts } from "../tags/index";
 import Tags from "../tags/index";
-import Loader from '../loader/index'
+import Loader from "../loader/index";
 import { MessangerConfig, Prompt } from "../../types/index.ts";
 import {
   postMessageChatGPT,
@@ -53,12 +53,12 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   const messenger_body: HTMLDivElement | null =
     messengerContent.querySelector(".messenger-body");
   const tagsComponent: HTMLElement = document.createElement("div");
-  const loaderComponents: HTMLDivElement = document.createElement('div')
+  const loaderComponents: HTMLDivElement = document.createElement("div");
 
   if (!SocialMedias(params)) {
     if (messageContent) messageContent.style.height = "380px";
     if (messenger_body) messenger_body.style.height = "440px";
-  };
+  }
 
   if (messengerHeader)
     messengerHeader.style.background = params.header_background || "";
@@ -82,7 +82,6 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   async function sendMessage(value?: string) {
     if (sendButton) sendButton.disabled = true;
     if (messageInput) messageInput.disabled = false;
-    loaderComponents.innerHTML = Loader(true);
 
     let message: string;
     if (!value) {
@@ -109,15 +108,21 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
           console.log(error);
         }
       } else {
-        await sendMessageToChatGPT(message).then(async () => {
-          let res: Prompt[] = await sendMessageToGetPrompts({
+        let res: Prompt[];
+        tagsComponent.innerHTML = '<div></div>'
+        await sendMessageToChatGPT(message).then( async () => {
+          loaderComponents.innerHTML = Loader(true);
+          await sendMessageToGetPrompts({
             message: message,
             token: params.token,
+          }).then((response) => {
+            loaderComponents.innerHTML = Loader(false);
+            res = response;
+            res = res.filter((element) => element.length > 0);
+            updatePrompts(res);
           });
-          loaderComponents.innerHTML = Loader(false);
           clearTags();
-          res = res.filter((element) => element.length > 0);
-          updatePrompts(res);
+
           tagsComponent.classList.add("tag-wrapper");
           tagsComponent.innerHTML = Tags();
           messageContent?.appendChild(tagsComponent);
@@ -127,8 +132,6 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
     if (sendButton) sendButton.disabled = false;
     // if(messageInput) messageInput.disabled = false;
   }
-
-
 
   function displayUserMessage(message: string) {
     const wrapper: HTMLDivElement = document.createElement("div");
