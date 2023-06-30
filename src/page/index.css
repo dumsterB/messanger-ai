@@ -32,8 +32,8 @@ input:-webkit-autofill {
 
 @media screen and (max-width: 450px) {
   .messenger-button {
-    height: 50px;
-    width: 50px;
+    height: 65px;
+    width: 65px;
   }
 
   .chat-img {
