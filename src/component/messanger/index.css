@@ -208,7 +208,7 @@
 
 @media screen and (max-width: 450px) {
   .messenger-content {
-    height: 100%!important;
+    height: 100%;
     width: -webkit-fill-available;
     position: fixed;
     bottom: 0px;
@@ -222,9 +222,9 @@
   }
 
   .messenger-header {height: 76px;}
-  .message-content {height: 100%;}
+  /* .message-content {height: 100%!important;} */
   .messenger-body {
-    height: 591px!important;
+    height: 100%!important;
     border-radius: 0px;
   }
   .send-button {width: 42px;}
