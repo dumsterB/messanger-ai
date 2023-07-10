@@ -27,7 +27,7 @@ async function postMessageChatGPT(data: dataMessage) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${data.token}`,
       },
-      body: JSON.stringify({ text: data.message }),
+      body: JSON.stringify({ text: data.message, }),
     }
   );
 
@@ -45,7 +45,7 @@ async function sendMessageToGetPrompts(data: dataMessage) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${data.token}`,
       },
-      body: JSON.stringify({ text: data.message }),
+      body: JSON.stringify({ text: data.message, }),
     }
   );
 

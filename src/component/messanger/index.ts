@@ -36,7 +36,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
         <div id="message-content" class="message-content chats mt-1 p-2"></div>
       </div>
       <div id="input-container" class="input-container">
-        <textarea id="message-input" class="mt-1 border border-gray-200 rounded message-input rounded-lg break-all	" placeholder="Type your message here"></textarea>
+        <textarea id="message-input" class="mt-1 border border-gray-200 rounded message-input rounded-lg break-all" placeholder="Type your message here"></textarea>
         <button id="send-button" class="send-button text-white button"> <span class="send-button-icon">${send}</span></button>
       </div>
     </div>
@@ -99,6 +99,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
             await sendMessageToGetPrompts({
               message: message,
               token: params.token,
+              info: params.info
             }).then((res) => {
               loaderComponents.innerHTML = Loader(false);
               updatePrompts(res);
@@ -115,6 +116,7 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
           await sendMessageToGetPrompts({
             message: message,
             token: params.token,
+            info: params.info
           }).then((response) => {
             loaderComponents.innerHTML = Loader(false);
             res = response;

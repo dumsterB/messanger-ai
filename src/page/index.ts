@@ -4,6 +4,7 @@ import "./index.css";
 import button_img from "../assets/chat.svg";
 
 const messengerButton = document.createElement("button");
+
 (window as any).closeMessenger = () => {
   const messengerContentElem = document.getElementById("messenger-content");
   if (messengerContentElem) {
