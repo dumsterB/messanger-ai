@@ -53,7 +53,6 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
   const messenger_body: HTMLDivElement | null =
     messengerContent.querySelector(".messenger-body");
   const tagsComponent: HTMLElement = document.createElement("div");
-  const loaderComponents: HTMLDivElement = document.createElement("div");
 
   if (!SocialMedias(params)) {
     if (messageContent) messageContent.style.height = "380px";
@@ -101,7 +100,6 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
               token: params.token,
               info: params.info
             }).then((res) => {
-              loaderComponents.innerHTML = Loader(false);
               updatePrompts(res);
             });
           });
@@ -109,31 +107,39 @@ export function messengerContent(params: MessangerConfig): HTMLElement {
           console.log(error);
         }
       } else {
-        let res: Prompt[];
-        tagsComponent.innerHTML = '<div></div>'
-        await sendMessageToChatGPT(message).then( async () => {
-          loaderComponents.innerHTML = Loader(true);
-          await sendMessageToGetPrompts({
-            message: message,
-            token: params.token,
-            info: params.info
-          }).then((response) => {
-            loaderComponents.innerHTML = Loader(false);
-            res = response;
-            res = res.filter((element) => element.length > 0);
-            updatePrompts(res);
-          });
-          clearTags();
+        const loaderComponents: HTMLDivElement = document.createElement("div");
+        loaderComponents.innerHTML = Loader(true);
+        messageContent?.appendChild(loaderComponents);
 
+        let res;
+        tagsComponent.innerHTML = '<div></div>';
+
+        const sendMessagePromise = sendMessageToChatGPT(message).then(async () => {
+          clearTags();
           tagsComponent.classList.add("tag-wrapper");
           tagsComponent.innerHTML = Tags();
           messageContent?.appendChild(tagsComponent);
         });
+
+        const getPromptsPromise = sendMessageToGetPrompts({
+          message: message,
+          token: params.token,
+          info: params.info
+        }).then(async (response) => {
+          res = response;
+          res = res.filter((element) => element.length > 0);
+          updatePrompts(res);
+        });
+
+        Promise.all([sendMessagePromise, getPromptsPromise]).then(() => {
+          loaderComponents.innerHTML = "";
+        });
       }
     }
+
     if (sendButton) sendButton.disabled = false;
-    // if(messageInput) messageInput.disabled = false;
   }
+
 
   function displayUserMessage(message: string) {
     const wrapper: HTMLDivElement = document.createElement("div");
